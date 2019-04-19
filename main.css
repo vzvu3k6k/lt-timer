@@ -1,0 +1,18 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.timer {
+  text-align: center;
+  font-size: 60vh;
+  height: 100vh;
+}
+
+.timer progress {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 10vh;
+}

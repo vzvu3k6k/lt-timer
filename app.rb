@@ -2,6 +2,9 @@ require 'ovto'
 require 'native'
 
 class MyApp < Ovto::App
+  # 5 minutes
+  PRESENTATION_TIME = 60 * 5
+
   def setup
     actions.set_timer
   end
@@ -9,9 +12,6 @@ class MyApp < Ovto::App
   class State < Ovto::State
     item :start_time, default: Time.now
     item :now, default: Time.now
-
-    # 5 minutes
-    PRESENTATION_TIME = 60 * 5
 
     def end_time
       start_time + PRESENTATION_TIME
@@ -36,8 +36,9 @@ class MyApp < Ovto::App
 
   class MainComponent < Ovto::Component
     def render
-      o 'div', 'data-remain-seconds' => state.remain_seconds do
+      o 'div', class: 'timer' do
         o 'span', state.format_time
+        o 'progress', max: PRESENTATION_TIME, value: state.remain_seconds
       end
     end
   end
