@@ -18,12 +18,7 @@ class MyApp < Ovto::App
     end
 
     def remain_seconds
-      [end_time - Time.now, 0].max
-    end
-
-    def format_time
-      seconds = remain_seconds
-      '%02d:%02d' % [seconds / 60, seconds % 60]
+      [end_time - now, 0].max
     end
   end
 
@@ -37,7 +32,19 @@ class MyApp < Ovto::App
   class MainComponent < Ovto::Component
     def render
       o 'div', class: 'timer' do
-        o 'span', state.format_time
+        minutes = (state.remain_seconds / 60).floor
+        seconds = (state.remain_seconds % 60).floor
+
+        classes =
+          if minutes.positive?
+            %w[strong weak]
+          else
+            %w[weak strong]
+          end
+
+        o 'span', { class: "minutes #{classes[0]}" }, minutes
+        o 'span', { class: "seconds #{classes[1]}" }, seconds
+
         o 'progress', max: PRESENTATION_TIME, value: state.remain_seconds
       end
     end
