@@ -29,7 +29,7 @@ class MyApp < Ovto::App
 
   class Actions < Ovto::Actions
     def set_timer
-      $$.setTimeout(-> { actions.set_timer }, 1000)
+      $$.requestAnimationFrame(-> { actions.set_timer }, 1000)
       { now: Time.now }
     end
   end
