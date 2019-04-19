@@ -43,7 +43,9 @@ class MyApp < Ovto::App
           end
 
         o 'span', { class: "minutes #{classes[0]}" }, minutes
+        o 'span', { class: 'label' }, 'min'
         o 'span', { class: "seconds #{classes[1]}" }, seconds
+        o 'span', { class: 'label' }, 'sec'
 
         o 'progress', max: PRESENTATION_TIME, value: state.remain_seconds
       end
