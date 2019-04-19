@@ -1,0 +1,30 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.timer {
+  text-align: center;
+  height: 100vh;
+}
+
+.label {
+  font-size: 10vh;
+  margin-right: 3vw;
+}
+
+.strong {
+  font-size: 80vh;
+}
+
+.weak {
+  font-size: 40vh;
+}
+
+.timer progress {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 10vh;
+}
