@@ -4,8 +4,10 @@ require 'native'
 class MyApp < Ovto::App
   # 5 minutes by default
   def self.presentation_time
-    minute = $$.location.hash.slice(/^#t=(\d+)m$/, 1)&.to_i || 5
-    minute * 60
+    match = $$.location.hash.match(/^#t=(?:(\d+)m)?(?:(\d+)s)?$/)
+    return 3000 unless match # 5 minutes by default
+    min, sec = match.captures.map(&:to_i)
+    min * 60 + sec
   end
 
   def setup
