@@ -2,8 +2,11 @@ require 'ovto'
 require 'native'
 
 class MyApp < Ovto::App
-  # 5 minutes
-  PRESENTATION_TIME = 60 * 5
+  # 5 minutes by default
+  def self.presentation_time
+    minute = $$.location.hash.slice(/^#t=(\d+)m$/, 1)&.to_i || 5
+    minute * 60
+  end
 
   def setup
     # TODO: stop the loop on removing this app
@@ -19,7 +22,7 @@ class MyApp < Ovto::App
     item :now, default: Time.now
 
     def end_time
-      start_time + PRESENTATION_TIME
+      start_time + MyApp.presentation_time
     end
 
     def remain_seconds
@@ -56,7 +59,7 @@ class MyApp < Ovto::App
         end
 
         o 'div', class: 'progress-container' do
-          o 'progress', max: PRESENTATION_TIME, value: state.remain_seconds
+          o 'progress', max: MyApp.presentation_time, value: state.remain_seconds
         end
       end
     end
