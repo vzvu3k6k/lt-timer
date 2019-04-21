@@ -1,6 +1,6 @@
 desc 'compile into js'
 task :default do
-  sh 'bundle exec opal -c -g ovto app.rb > app.js'
+  sh 'bundle exec opal -c -g ovto app.rb > static/app.js'
 end
 
 desc 'start auto-compiling'
