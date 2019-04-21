@@ -24771,7 +24771,7 @@ Opal.modules["ovto"] = function(Opal) {
       match = $gvars.$.$location().$hash().$match(/^#t=(?:(\d+)m)?(?:(\d+)s)?$/);
       if ($truthy(match)) {
         } else {
-        return 3000
+        return 300
       };
       $b = $send(match.$captures(), 'map', [], "to_i".$to_proc()), $a = Opal.to_ary($b), (min = ($a[0] == null ? nil : $a[0])), (sec = ($a[1] == null ? nil : $a[1])), $b;
       return $rb_plus($rb_times(min, 60), sec);
