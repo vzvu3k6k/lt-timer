@@ -32,22 +32,28 @@ class MyApp < Ovto::App
   class MainComponent < Ovto::Component
     def render
       o 'div', class: 'timer' do
-        minutes = (state.remain_seconds / 60).floor
-        seconds = (state.remain_seconds % 60).floor
+        o 'div', class: 'text-container' do
+          o 'div', class: 'text-subcontainer' do
+            minutes = (state.remain_seconds / 60).floor
+            seconds = (state.remain_seconds % 60).floor
 
-        classes =
-          if minutes.positive?
-            %w[strong weak]
-          else
-            %w[weak strong]
+            classes =
+              if minutes.positive?
+                %w[strong weak]
+              else
+                %w[weak strong]
+              end
+
+            o 'span', { class: "minutes #{classes[0]}" }, minutes
+            o 'span', { class: 'label' }, 'min'
+            o 'span', { class: "seconds #{classes[1]}" }, seconds
+            o 'span', { class: 'label' }, 'sec'
           end
+        end
 
-        o 'span', { class: "minutes #{classes[0]}" }, minutes
-        o 'span', { class: 'label' }, 'min'
-        o 'span', { class: "seconds #{classes[1]}" }, seconds
-        o 'span', { class: 'label' }, 'sec'
-
-        o 'progress', max: PRESENTATION_TIME, value: state.remain_seconds
+        o 'div', class: 'progress-container' do
+          o 'progress', max: PRESENTATION_TIME, value: state.remain_seconds
+        end
       end
     end
   end
