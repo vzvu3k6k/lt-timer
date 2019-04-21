@@ -6,6 +6,20 @@
 .timer {
   text-align: center;
   height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.text-container {
+  text-align: center;
+  line-height: 0;
+  flex-basis: 80vh;
+  display: flex;
+}
+
+.text-subcontainer {
+  width: 100%;
+  align-self: flex-end;
 }
 
 .label {
@@ -13,18 +27,29 @@
   margin-right: 3vw;
 }
 
-.strong {
+.minutes, .seconds {
+  transition: 0.5s ease;
+}
+
+.big {
   font-size: 80vh;
 }
 
-.weak {
+.small {
   font-size: 40vh;
 }
 
-.timer progress {
-  position: fixed;
-  right: 0;
-  bottom: 0;
+.over {
+  color: crimson;
+}
+
+.progress-container {
   width: 100vw;
-  height: 10vh;
+  flex-basis: 10vh;
+  align-self: flex-end;
+}
+
+progress {
+  margin-top: 5vh;
+  width: 100%;
 }
