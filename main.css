@@ -39,6 +39,10 @@
   font-size: 40vh;
 }
 
+.over {
+  color: crimson;
+}
+
 .progress-container {
   width: 100vw;
   flex-basis: 10vh;

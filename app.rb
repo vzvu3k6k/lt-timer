@@ -28,7 +28,11 @@ class MyApp < Ovto::App
     end
 
     def remain_seconds
-      [end_time - now, 0].max
+      end_time - now
+    end
+
+    def over?
+      remain_seconds.negative?
     end
   end
 
@@ -41,10 +45,11 @@ class MyApp < Ovto::App
   class MainComponent < Ovto::Component
     def render
       o 'div', class: 'timer' do
-        o 'div', class: 'text-container' do
+        o 'div', class: "text-container #{'over' if state.over?}" do
           o 'div', class: 'text-subcontainer' do
-            minutes = (state.remain_seconds / 60).floor
-            seconds = (state.remain_seconds % 60).floor
+            abs_remain_seconds = state.remain_seconds.abs
+            minutes = (abs_remain_seconds / 60).floor
+            seconds = (abs_remain_seconds % 60).floor
 
             classes =
               if minutes.positive?
@@ -53,6 +58,7 @@ class MyApp < Ovto::App
                 %w[small big]
               end
 
+            o 'span', { class: "label #{classes[0]}" }, '-' if state.over?
             o 'span', { class: "minutes #{classes[0]}" }, minutes
             o 'span', { class: 'label' }, 'min'
             o 'span', { class: "seconds #{classes[1]}" }, seconds
