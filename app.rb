@@ -6,7 +6,12 @@ class MyApp < Ovto::App
   PRESENTATION_TIME = 60 * 5
 
   def setup
-    actions.set_timer
+    # TODO: stop the loop on removing this app
+    loop = -> {
+      actions.update_now
+      $$.requestAnimationFrame(loop)
+    }
+    loop.call
   end
 
   class State < Ovto::State
@@ -23,8 +28,7 @@ class MyApp < Ovto::App
   end
 
   class Actions < Ovto::Actions
-    def set_timer
-      $$.requestAnimationFrame(-> { actions.set_timer })
+    def update_now
       { now: Time.now }
     end
   end
