@@ -43,9 +43,9 @@ class MyApp < Ovto::App
 
             classes =
               if minutes.positive?
-                %w[strong weak]
+                %w[big small]
               else
-                %w[weak strong]
+                %w[small big]
               end
 
             o 'span', { class: "minutes #{classes[0]}" }, minutes
