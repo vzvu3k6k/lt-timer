@@ -38,6 +38,9 @@ jobs:
           command: npx gh-pages@2.0.1 --dist static
 workflows:
   version: 2
+  test:
+    jobs:
+      - build
   publish:
     jobs:
       - build:
