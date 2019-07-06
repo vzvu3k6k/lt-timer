@@ -24555,7 +24555,7 @@ Opal.modules["ovto/version"] = function(Opal) {
 
     var def = self.$$proto, $nesting = [self].concat($parent_nesting);
 
-    Opal.const_set($nesting[0], 'VERSION', "0.4.0")
+    Opal.const_set($nesting[0], 'VERSION', "0.4.1")
   })($nesting[0], $nesting)
 };
 
