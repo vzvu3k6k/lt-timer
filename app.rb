@@ -1,6 +1,8 @@
 require 'ovto'
 require 'native'
 
+require 'components/remained_time'
+
 class MyApp < Ovto::App
   # 5 minutes by default
   def self.presentation_time
@@ -30,10 +32,6 @@ class MyApp < Ovto::App
     def remain_seconds
       end_time - now
     end
-
-    def over?
-      remain_seconds.negative?
-    end
   end
 
   class Actions < Ovto::Actions
@@ -45,24 +43,9 @@ class MyApp < Ovto::App
   class MainComponent < Ovto::Component
     def render
       o 'div', class: 'timer' do
-        o 'div', class: "text-container #{'over' if state.over?}" do
+        o 'div', class: "text-container #{'over' if state.remain_seconds.negative?}" do
           o 'div', class: 'text-subcontainer' do
-            abs_remain_seconds = state.remain_seconds.abs
-            minutes = (abs_remain_seconds / 60).floor
-            seconds = (abs_remain_seconds % 60).floor
-
-            classes =
-              if minutes.positive?
-                %w[big small]
-              else
-                %w[small big]
-              end
-
-            o 'span', { class: "label #{classes[0]}" }, '-' if state.over?
-            o 'span', { class: "minutes #{classes[0]}" }, minutes
-            o 'span', { class: 'label' }, 'min'
-            o 'span', { class: "seconds #{classes[1]}" }, seconds
-            o 'span', { class: 'label' }, 'sec'
+            o Components::RemainedTime, remain_seconds: state.remain_seconds
           end
         end
 
