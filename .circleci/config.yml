@@ -35,7 +35,7 @@ jobs:
             git config --global user.name "vzvu3k6k (CI build)"
       - run:
           name: Deploy docs to gh-pages branch
-          command: npx gh-pages@2.0.1 --dist static
+          command: npx gh-pages@2.0.1 --dist static --message "Updates [skip ci]"
 workflows:
   version: 2
   test:
