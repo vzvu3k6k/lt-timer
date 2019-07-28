@@ -26,6 +26,7 @@ PLATFORMS
 DEPENDENCIES
   ifchanged
   ovto
+  rack
   rake
 
 BUNDLED WITH
