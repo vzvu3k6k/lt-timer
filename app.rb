@@ -1,3 +1,4 @@
+require 'opal'
 require 'ovto'
 require 'native'
 
