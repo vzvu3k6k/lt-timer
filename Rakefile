@@ -1,6 +1,9 @@
+require_relative './lib/opal_builder'
+
 desc 'compile into js'
 task :default do
-  sh 'bundle exec opal -c -g ovto -I ./lib app.rb > static/app.js'
+  builder = OpalBuilder.build('app')
+  File.write('static/app.js', builder.to_s)
 end
 
 desc 'start auto-compiling'
