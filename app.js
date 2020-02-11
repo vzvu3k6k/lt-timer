@@ -26680,9 +26680,12 @@ Opal.modules["components/remained_time"] = function(Opal) {
   function $rb_divide(lhs, rhs) {
     return (typeof(lhs) === 'number' && typeof(rhs) === 'number') ? lhs / rhs : lhs['$/'](rhs);
   }
-  var self = Opal.top, $nesting = [], nil = Opal.nil, $$$ = Opal.const_get_qualified, $$ = Opal.const_get_relative, $breaker = Opal.breaker, $slice = Opal.slice, $module = Opal.module, $klass = Opal.klass, $hash2 = Opal.hash2, $truthy = Opal.truthy, $send = Opal.send;
+  function $rb_minus(lhs, rhs) {
+    return (typeof(lhs) === 'number' && typeof(rhs) === 'number') ? lhs - rhs : lhs['$-'](rhs);
+  }
+  var self = Opal.top, $nesting = [], nil = Opal.nil, $$$ = Opal.const_get_qualified, $$ = Opal.const_get_relative, $breaker = Opal.breaker, $slice = Opal.slice, $module = Opal.module, $klass = Opal.klass, $hash2 = Opal.hash2, $truthy = Opal.truthy, $send = Opal.send, $gvars = Opal.gvars;
 
-  Opal.add_stubs(['$require', '$abs', '$floor', '$/', '$%', '$positive?', '$o', '$negative?', '$[]']);
+  Opal.add_stubs(['$require', '$abs', '$floor', '$/', '$%', '$negative?', '$title=', '$document', '$-', '$positive?', '$o', '$[]']);
   
   self.$require("ovto");
   return (function($base, $parent_nesting) {
@@ -26696,7 +26699,8 @@ Opal.modules["components/remained_time"] = function(Opal) {
       var $nesting = [self].concat($parent_nesting), $RemainedTime_render$1;
 
       return (Opal.def(self, '$render', $RemainedTime_render$1 = function $$render($kwargs) {
-        var remain_seconds, $$2, self = this, abs_remain_seconds = nil, minutes = nil, seconds = nil, classes = nil;
+        var remain_seconds, $$2, self = this, abs_remain_seconds = nil, minutes = nil, seconds = nil, $writer = nil, classes = nil;
+        if ($gvars.$ == null) $gvars.$ = nil;
 
         
         
@@ -26713,6 +26717,14 @@ Opal.modules["components/remained_time"] = function(Opal) {
         abs_remain_seconds = remain_seconds.$abs();
         minutes = $rb_divide(abs_remain_seconds, 60).$floor();
         seconds = abs_remain_seconds['$%'](60).$floor();
+        
+        $writer = ["" + ((function() {if ($truthy(remain_seconds['$negative?']())) {
+          return "-"
+        } else {
+          return ""
+        }; return nil; })()) + (minutes) + "min " + (seconds) + "sec"];
+        $send($gvars.$.$document(), 'title=', Opal.to_a($writer));
+        $writer[$rb_minus($writer["length"], 1)];;
         classes = (function() {if ($truthy(minutes['$positive?']())) {
           return ["big", "small"]
         } else {
