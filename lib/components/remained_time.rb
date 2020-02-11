@@ -7,6 +7,9 @@ module Components
       minutes = (abs_remain_seconds / 60).floor
       seconds = (abs_remain_seconds % 60).floor
 
+      # Maybe this is too hacky.
+      $$.document.title = "#{remain_seconds.negative? ? '-' : ''}#{minutes}min #{seconds}sec"
+
       classes =
         if minutes.positive?
           %w[big small]
