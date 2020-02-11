@@ -6,7 +6,7 @@ orbs:
 jobs:
   build:
     docker:
-      - image: circleci/ruby:2.6.2
+      - image: circleci/ruby:2.7.0
     steps:
       - checkout
       # https://circleci.com/gh/vzvu3k6k/lt-timer/5
