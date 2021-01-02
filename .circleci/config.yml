@@ -13,7 +13,8 @@ jobs:
       - run:
           name: Update bundler for workaround
           command: gem update bundler
-      - ruby-orbs/bundle-install
+      - ruby-orbs/bundle-install:
+          restore_bundled_with: false
       - run:
           name: Compile
           command: bundle exec rake
