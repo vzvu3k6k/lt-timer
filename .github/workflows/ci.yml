@@ -1,9 +1,6 @@
 name: build and deploy
 on:
   push:
-    branches:
-      - master
-      - ci
   pull_request:
 
 jobs:
@@ -22,6 +19,7 @@ jobs:
           path: ./static
 
   deploy:
+    if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/ci'
     needs: build
 
     permissions:
