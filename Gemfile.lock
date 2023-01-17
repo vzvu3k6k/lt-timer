@@ -11,7 +11,7 @@ GEM
       thor (>= 0.20)
     parser (3.2.0.0)
       ast (~> 2.4.1)
-    rack (2.2.5)
+    rack (2.2.6)
     rake (13.0.6)
     thor (1.2.1)
 
